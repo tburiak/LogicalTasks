@@ -1,0 +1,45 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+        showStandardStreams = true
+        showStackTraces = true
+        exceptionFormat = 'full'
+    }
+}
+
+ext {
+    versions = [
+            commonsIo         : '2.8.0',
+            commonsLang3      : '3.11',
+            testRailApi       : '2.0.0',
+            junit             : '5.6.2',
+            guava             : '29.0-jre',
+            restAssured       : '4.2.0', //doesn't work with 4.3.0
+            allureGradle      : '2.8.1',
+            allureJunit5      : '2.13.5',
+            allureSelenide    : '2.13.5',
+            selenide          : '5.15.0',
+            ownerJava8        : '1.0.11',
+            junitPlatformSuite: '1.7.0'
+    ]
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junit
+}
